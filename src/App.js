@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
+import {LandingPage} from './components/LandingPage.component';
+import {AppLayout} from './components/App.Layout.component';
+import {ProtectedRoute} from './components/protected.route';
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
+function App() {    
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{textAlign:"center"}}>
+      <h1>
+        Protected Router
+      </h1>
+      <Switch>
+      <Route path="/landing" component={LandingPage}/>
+      <ProtectedRoute path="/app-layout" component={AppLayout}/>
+      <Route path="*" component={() =>
+        "404 Not found"
+      }/>
+      </Switch>
     </div>
   );
 }
